@@ -15,7 +15,7 @@ def send_message(sender, instance, created, **kwargs):
 
         title = "nueva entrada"
         body = instance.title
-        icon = "/static/icon.png"
+        icon = "/assets/img/icono160x160.png"
 
         devices = Device.objects.filter(active=True)
 

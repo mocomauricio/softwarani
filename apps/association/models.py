@@ -133,6 +133,9 @@ class JobOffer(models.Model):
         editable=False
     )
 
+    def __str__(self):
+        return self.title
+
 class Message(models.Model):
     class Meta:
         verbose_name='Mensaje'
@@ -196,6 +199,9 @@ class Post(models.Model):
         on_delete=models.CASCADE,
         editable=False
     )
+
+    def __str__(self):
+        return self.title
 
 class File(models.Model):
     class Meta:
