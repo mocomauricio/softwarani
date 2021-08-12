@@ -21,7 +21,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-plwc_$e7hr@%d9z6^_466j==8j0d16p%*k#8n+ja_ma_$rch(*'
+#SECRET_KEY = 'django-insecure-plwc_$e7hr@%d9z6^_466j==8j0d16p%*k#8n+ja_ma_$rch(*'
+SECRET_KEY = 'django-insecure-o@xxe1m=10&13$*o5kq$vvin0b00p=plvn30%xyk8nq-1b^5sq'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -39,10 +40,19 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # Libs
+    'rest_framework',
+    'corsheaders',
+
+    # Apps
+    'apps.association',
     'principal',
 ]
 
 MIDDLEWARE = [
+    # CORS middleware
+    'corsheaders.middleware.CorsMiddleware',
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -126,3 +136,21 @@ MEDIA_ROOT= os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Configuración de CORS
+
+CORS_ALLOWED_ORIGINS = [
+    #"https://example.com",
+    #"https://www.example.com",
+    "http://localhost:5000",
+    "https://aiepy-b87e6.web.app",
+    "https://aiepy-b87e6.firebaseapp.com"
+]
+
+# Configuración de REST
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 10
+}
+
