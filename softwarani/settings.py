@@ -46,7 +46,7 @@ INSTALLED_APPS = [
 
     # Apps
     'apps.association',
-    'principal',
+    'apps.principal',
 ]
 
 MIDDLEWARE = [
@@ -139,13 +139,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Configuración de CORS
 
-CORS_ALLOWED_ORIGINS = [
-    #"https://example.com",
-    #"https://www.example.com",
-    "http://localhost:5000",
-    "https://aiepy-b87e6.web.app",
-    "https://aiepy-b87e6.firebaseapp.com"
-]
+CORS_ALLOW_ALL_ORIGINS = True
 
 # Configuración de REST
 

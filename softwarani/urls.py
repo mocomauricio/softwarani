@@ -14,21 +14,24 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
 from django.conf.urls.static import static
 from django.conf import settings
+from django.urls import include
 
 admin.site.enable_nav_sidebar = False
 admin.site.site_header = 'Administracion de AIEPy'
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
 
-    # incluimos las urls de nuestro sitio custom  
-    path('', include("principal.urls")),
+    path('admin/', admin.site.urls),
 
     # api rest
     path('api/', include("apps.association.urls")),
+
+    # incluimos las urls de nuestro sitio custom  
+    path('', include("apps.principal.urls")),
+
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \
   + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
