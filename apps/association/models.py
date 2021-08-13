@@ -239,4 +239,27 @@ class Device(models.Model):
     created_at = models.DateTimeField(verbose_name="fecha creación", auto_now_add=True)
 
     def __str__(self):
-        return self.token 
+        return self.token
+
+
+SOCIAL_NETWORK_CHOICES=[
+    (0, 'facebook'),
+    (1, 'twitter'),
+    (2, 'instagram'),
+    (3, 'tiktok'),
+    (4, 'whatsapp'),
+    (5, 'youtube'),
+    (6, 'linkedin'),
+    (7, 'github'),
+]
+
+class SocialNetwork(models.Model):
+    class Meta:
+        verbose_name = 'Red social'
+        verbose_name_plural = 'Redes sociales'
+
+    page = models.PositiveSmallIntegerField(verbose_name='página', choices=SOCIAL_NETWORK_CHOICES)
+    link = models.URLField()
+
+    def __str__(self):
+        return self.link

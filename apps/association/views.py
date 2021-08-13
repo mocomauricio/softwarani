@@ -3,8 +3,8 @@ from rest_framework import permissions
 
 from rest_framework import pagination
 
-from .serializers import PartnerSerializer, ExecutiveSerializer, JobOfferSerializer, MessageSerializer, PostSerializer
-from .models import Partner, Executive, JobOffer, Message, Post
+from .serializers import PartnerSerializer, ExecutiveSerializer, JobOfferSerializer, MessageSerializer, PostSerializer, SocialNetworkSerializer
+from .models import Partner, Executive, JobOffer, Message, Post, SocialNetwork
 
 # Create your views here.
 class PartnerViewSet(viewsets.ReadOnlyModelViewSet):
@@ -33,3 +33,8 @@ class PostViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = PostSerializer
     permission_classes = [permissions.AllowAny]
 
+class SocialNetworkViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = SocialNetwork.objects.all()
+    serializer_class = SocialNetworkSerializer
+    permission_classes = [permissions.AllowAny]
+    pagination_class = None

@@ -56,7 +56,8 @@ class FileAdmin(admin.ModelAdmin):
     ordering = ['-id']
     list_per_page = 50
 
-@register(Device)
-class DeviceAdmin(admin.ModelAdmin):
+@register(SocialNetwork)
+class SocialNetworkAdmin(admin.ModelAdmin):
+    list_display = ['page', 'link']
     ordering = ['-id']
     list_per_page = 50

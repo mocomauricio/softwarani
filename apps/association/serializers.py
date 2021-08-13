@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Partner, Executive, JobOffer, Message, Post
+from .models import Partner, Executive, JobOffer, Message, Post, SocialNetwork
 
 class PartnerSerializer(serializers.ModelSerializer):
     class Meta:
@@ -44,4 +44,14 @@ class PostSerializer(serializers.ModelSerializer):
         representation = super().to_representation(instance)
         representation['author'] = instance.author.username
         representation['publication_date'] = instance.publication_date.strftime("%d/%m/%Y %H:%M hs")
+        return representation
+
+class SocialNetworkSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SocialNetwork
+        fields = '__all__'
+
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        representation['page'] = instance.get_page_display()
         return representation
