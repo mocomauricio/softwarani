@@ -1,10 +1,10 @@
 from rest_framework import serializers
-from .models import Partner, Executive, JobOffer, Message, Post, SocialNetwork
+from .models import Partner, Executive, JobOffer, Message, Post, SocialNetwork, AssociationRequest
 
 class PartnerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Partner
-        fields = '__all__'
+        fields = ['first_name', 'last_name']
 
 class ExecutiveSerializer(serializers.ModelSerializer):
     class Meta:
@@ -55,3 +55,8 @@ class SocialNetworkSerializer(serializers.ModelSerializer):
         representation = super().to_representation(instance)
         representation['page'] = instance.get_page_display()
         return representation
+
+class AssociationRequestSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AssociationRequest
+        fields = '__all__'

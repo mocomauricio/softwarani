@@ -1,10 +1,11 @@
 from rest_framework import viewsets
 from rest_framework import permissions
-
+from rest_framework import generics
 from rest_framework import pagination
+from rest_framework import mixins 
 
-from .serializers import PartnerSerializer, ExecutiveSerializer, JobOfferSerializer, MessageSerializer, PostSerializer, SocialNetworkSerializer
-from .models import Partner, Executive, JobOffer, Message, Post, SocialNetwork
+from .serializers import PartnerSerializer, ExecutiveSerializer, JobOfferSerializer, MessageSerializer, PostSerializer, SocialNetworkSerializer, AssociationRequestSerializer
+from .models import Partner, Executive, JobOffer, Message, Post, SocialNetwork, AssociationRequest
 
 # Create your views here.
 class PartnerViewSet(viewsets.ReadOnlyModelViewSet):
@@ -23,7 +24,7 @@ class JobOfferViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = JobOfferSerializer
     permission_classes = [permissions.AllowAny]
 
-class MessageViewSet(viewsets.ModelViewSet):
+class MessageViewSet(viewsets.GenericViewSet, mixins.CreateModelMixin):
     queryset = Message.objects.all()
     serializer_class = MessageSerializer
     permission_classes = [permissions.AllowAny]
@@ -38,3 +39,8 @@ class SocialNetworkViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = SocialNetworkSerializer
     permission_classes = [permissions.AllowAny]
     pagination_class = None
+
+class AssociationRequestViewSet(viewsets.GenericViewSet, mixins.CreateModelMixin):
+    queryset = AssociationRequest.objects.all()
+    serializer_class = AssociationRequestSerializer
+    permission_classes = [permissions.AllowAny]

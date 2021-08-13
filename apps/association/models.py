@@ -27,7 +27,17 @@ def path_and_rename2(instance, filename):
     # return the whole path to the file
     return os.path.join(path, filename)
 
+def path_and_rename3(instance, filename):
+    path = 'diplomas'
+    ext = filename.split('.')[-1]
 
+    # set filename as random string
+    filename = '{}.{}'.format(uuid4().hex, ext)
+
+    # return the whole path to the file
+    return os.path.join(path, filename)
+
+    
 class Partner(models.Model):
     class Meta:
         verbose_name = "Socio"
@@ -263,3 +273,57 @@ class SocialNetwork(models.Model):
 
     def __str__(self):
         return self.link
+
+
+class AssociationRequest(models.Model):
+    class Meta:
+        verbose_name = 'Solicitud de asociación'
+        verbose_name = 'Solicitudes de asociación'
+        ordering = ['-created_at']
+    first_name = models.CharField(
+        verbose_name='nombres', 
+        max_length=150, 
+    )
+
+    last_name = models.CharField(
+        verbose_name='apellidos', 
+        max_length=150, 
+    )
+
+    email = models.EmailField(
+        verbose_name='email',
+        max_length=255,
+        null=True, 
+        blank=True
+    )
+
+    phone = models.CharField(
+        verbose_name='teléfono',
+        max_length=30,
+        null=True, 
+        blank=True
+    )
+
+    mobile = models.CharField(
+        verbose_name='celular',
+        max_length=30,
+        null=True, 
+        blank=True
+    )
+
+    diploma = models.ImageField(
+        upload_to=path_and_rename3, 
+        max_length=255
+    )
+
+    created_at = models.DateTimeField(
+        verbose_name='fecha de creacion',
+        auto_now_add=True
+    )
+
+    def get_full_name(self):
+        full_name = '%s %s' % (self.first_name, self.last_name)
+        return full_name.strip()
+
+    def __str__(self):
+        return self.get_full_name()

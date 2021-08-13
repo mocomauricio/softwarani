@@ -61,3 +61,9 @@ class SocialNetworkAdmin(admin.ModelAdmin):
     list_display = ['page', 'link']
     ordering = ['-id']
     list_per_page = 50
+
+@register(AssociationRequest)
+class AssociationRequestAdmin(admin.ModelAdmin):
+    list_display = ['first_name', 'last_name', 'diploma', 'created_at']
+    search_fields = ['first_name', 'last_name', 'email']
+    list_per_page = 50
